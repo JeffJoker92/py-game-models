@@ -18,7 +18,7 @@ class Skill(models.Model):
     )
 
     class Meta:
-        unique_together = ('name', 'race')
+        unique_together = ("name", "race")
 
 
 class Guild(models.Model):
