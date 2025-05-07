@@ -9,7 +9,7 @@ class Race(models.Model):
 
 class Skill(models.Model):
 
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
     bonus = models.CharField(max_length=255)
     race = models.ForeignKey(
         Race,
@@ -17,11 +17,14 @@ class Skill(models.Model):
         related_name="skills"
     )
 
+    class Meta:
+        unique_together = ('name', 'race')
+
 
 class Guild(models.Model):
 
     name = models.CharField(max_length=255, unique=True)
-    description = models.TextField(null=True)
+    description = models.TextField(null=True, blank=True)
 
 
 class Player(models.Model):
