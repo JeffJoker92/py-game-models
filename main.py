@@ -18,15 +18,11 @@ def main() -> None:
         )
 
         for skill_data in race_data.get("skills", []):
-            skill, created = Skill.objects.get_or_create(
+            skill, _ = Skill.objects.get_or_create(
                 name=skill_data["name"],
-                defaults={
-                    "bonus": skill_data.get("bonus", ""),
-                    "race": race
-                }
+                race=race,
+                defaults={"bonus": skill_data.get("bonus", "")}
             )
-            if not created and skill.race != race:
-                continue
 
         guild_data = player_data.get("guild")
         guild = None
